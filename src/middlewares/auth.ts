@@ -14,12 +14,13 @@ const verifyToken = (req : any, res : any, next : any) => {
     const decoded = jwt.verify(token, 'process.env.TOKEN_KEY');
     let user = InMemoryDataStorage.getUserById(decoded.user_id);
     req.user = decoded;
-    // if (user.token === token) {
-    //   req.user = decoded;
-    // } else {
-    //   return res.status(401).send("Invalid Token");
-    // }
+    if (user.token === token) {
+      req.user = decoded;
+    } else {
+      return res.status(401).send("Invalid Token");
+    }
   } catch (err) {
+    console.log("---err---",err);
     return res.status(401).send("Invalid Token");
   }
   return next();

@@ -60,15 +60,11 @@ class UserController {
      const user = InMemoryDataStorage.getUserByEmail(email);
 
      if (!user) {
-       res.status(401).json({ message: 'Authentication failed' });
+       res.status(401).json({ message: 'Email not exists' });
        return;
      }
 
-     console.log("password-----",password);
-     console.log(" user.password-----", user.password);
-
      const result= await bcrypt.compare(password, user.password);
-     console.log("----result------",result);
      if (user && (await bcrypt.compare(password, user.password))) {
       // Create token
       const token = jwt.sign(
@@ -82,7 +78,6 @@ class UserController {
       // save user token
       user.token = token;
       const updatedUser = InMemoryDataStorage.updateUserById(user.id,user);
-      console.log("----------updatedUser-------",updatedUser);
       // user
       res.status(200).json({
         message: 'Authentication successful',

@@ -1,10 +1,7 @@
 import { Request, Response } from 'express';
 import { v4 as uuidv4 } from 'uuid';
-import bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken';
-const querystring = require('querystring');
 import InMemoryDataStorage from '../database';
-import { User, Task } from '../interfaces';
+import { Task } from '../interfaces';
 
 function isEmptyField(task:Task) {
 
@@ -100,7 +97,6 @@ class TaskController {
   public getTasks(req: Request, res: Response): void {
 
     let tasks;
-    console.log("---req.query--- : ",req.query.category);
 
     const category : string = req.query.category as string;
     const assignedTo  : string = req.query.assignedTo  as string;

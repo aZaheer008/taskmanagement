@@ -3,7 +3,33 @@ import app from '../server';
 
 describe('Tasks Creation', () => {
 
+        let token : any;
+
+        const createUserSigninToken = async () => {
+
+            // Use supertest to simulate a request to the signup route
+            const userData = {
+                username: 'testuser',
+                email: 'testuser@example.com',
+                password: 'password123',
+              };
+
+              const userDataLogin = {
+                email: 'testuser@example.com',
+                password: 'password123',
+              };
+          
+                // Use supertest to simulate a request to the signup route
+            const responseSignup = await request(app).post("/api/users/signup").send(userData);
+                 // Use supertest to simulate a request to the signup route
+            const response = await request(app).post("/api/users/login").send(userDataLogin);
+
+            token = response.body.token;
+        }
+
     it('Should create a new Task when valid data is provided', async () => {
+
+        await createUserSigninToken();
         const task = {
             "title": "task1",
             "description": "description1",
@@ -15,7 +41,7 @@ describe('Tasks Creation', () => {
         };
     
         // Use supertest to simulate a request to the signup route
-        const response = await request(app).post("/api/task").send(task);
+        const response = await request(app).post("/api/task").set('x-access-token', token).send(task);
     
         // Assertions
         expect(response.status).toBe(201); // Check for a successful status code
@@ -24,6 +50,8 @@ describe('Tasks Creation', () => {
     });
 
     it('Should return an error when any field is empty', async () => {
+
+        await createUserSigninToken();
         const task = {
             "title": "task1",
             "description": "",
@@ -35,7 +63,7 @@ describe('Tasks Creation', () => {
         };
     
         // Use supertest to simulate a request to the signup route
-        const response = await request(app).post("/api/task").send(task);
+        const response = await request(app).post("/api/task").set('x-access-token', token).send(task);
     
         // Assertions
         expect(response.status).toBe(400); // Check for a successful status code
@@ -43,6 +71,8 @@ describe('Tasks Creation', () => {
     });
 
     it(`Should return an error when status is not from 'Pending' Or 'Completed'`, async () => {
+
+        await createUserSigninToken();
         const task = {
             "title": "task1",
             "description": "description1",
@@ -54,7 +84,7 @@ describe('Tasks Creation', () => {
         };
     
         // Use supertest to simulate a request to the signup route
-        const response = await request(app).post("/api/task").send(task);
+        const response = await request(app).post("/api/task").set('x-access-token', token).send(task);
     
         // Assertions
         expect(response.status).toBe(400); // Check for a successful status code
@@ -64,6 +94,30 @@ describe('Tasks Creation', () => {
 
 describe('getTaskById ', () => {
 
+    let token : any;
+
+    const createUserSigninToken = async () => {
+
+        // Use supertest to simulate a request to the signup route
+        const userData = {
+            username: 'testuser',
+            email: 'testuser@example.com',
+            password: 'password123',
+          };
+
+          const userDataLogin = {
+            email: 'testuser@example.com',
+            password: 'password123',
+          };
+      
+            // Use supertest to simulate a request to the signup route
+        const responseSignup = await request(app).post("/api/users/signup").send(userData);
+             // Use supertest to simulate a request to the signup route
+        const response = await request(app).post("/api/users/login").send(userDataLogin);
+
+        token = response.body.token;
+    }
+
     const task = {
         "title": "task1",
         "description": "description1",
@@ -78,13 +132,14 @@ describe('getTaskById ', () => {
     const createTask = async () => {
 
         // Use supertest to simulate a request to the signup route
-        response = await request(app).post("/api/task").send(task);
+        await createUserSigninToken();
+        response = await request(app).post("/api/task").set('x-access-token', token).send(task);
     }
 
     it('Should get Task By Id', async () => {
 
         await createTask();
-        const fetchResponse = await request(app).get(`/api/task/${response.body.task.id}`);
+        const fetchResponse = await request(app).get(`/api/task/${response.body.task.id}`).set('x-access-token', token);
         // Assertions
         expect(fetchResponse.status).toBe(200); // Check for a successful status code
         expect(fetchResponse.body.task).toHaveProperty('id'); // Check if the task object has an 'id'
@@ -93,7 +148,7 @@ describe('getTaskById ', () => {
     it('Should get Error when no task found', async () => {
 
         await createTask();
-        const fetchResponse = await request(app).get(`/api/task/${response.body.task.id}1`);
+        const fetchResponse = await request(app).get(`/api/task/${response.body.task.id}1`).set('x-access-token', token);
         // Assertions
         expect(fetchResponse.status).toBe(400); // Check for a successful status code
         expect(fetchResponse.body.message).toBe('Task not found');
@@ -101,6 +156,30 @@ describe('getTaskById ', () => {
 });
 
 describe('updateTaskById ', () => {
+
+    let token : any;
+
+    const createUserSigninToken = async () => {
+
+        // Use supertest to simulate a request to the signup route
+        const userData = {
+            username: 'testuser',
+            email: 'testuser@example.com',
+            password: 'password123',
+          };
+
+          const userDataLogin = {
+            email: 'testuser@example.com',
+            password: 'password123',
+          };
+      
+            // Use supertest to simulate a request to the signup route
+        const responseSignup = await request(app).post("/api/users/signup").send(userData);
+             // Use supertest to simulate a request to the signup route
+        const response = await request(app).post("/api/users/login").send(userDataLogin);
+
+        token = response.body.token;
+    }    
 
     const task = {
         "title": "task1",
@@ -115,8 +194,9 @@ describe('updateTaskById ', () => {
 
     const createTask = async () => {
 
+        await createUserSigninToken();
         // Use supertest to simulate a request to the signup route
-        response = await request(app).post("/api/task").send(task);
+        response = await request(app).post("/api/task").set('x-access-token', token).send(task);
     }
 
     it('Should Update task by Id', async () => {
@@ -131,7 +211,7 @@ describe('updateTaskById ', () => {
             "category":"Home2",
             "status":"Pending"
         };
-        const updateResponse = await request(app).put(`/api/task/${response.body.task.id}`).send(updatedData);
+        const updateResponse = await request(app).put(`/api/task/${response.body.task.id}`).set('x-access-token', token).send(updatedData);
         // Assertions
         expect(updateResponse.status).toBe(201); // Check for a successful status code
         expect(updateResponse.body.message).toBe('Task updated successfully'); // Check for a successful status code
@@ -150,7 +230,7 @@ describe('updateTaskById ', () => {
             "category":"Home2",
             "status":"Pending"
         };
-        const updateResponse = await request(app).put(`/api/task/${response.body.task.id}1`).send(updatedData);
+        const updateResponse = await request(app).put(`/api/task/${response.body.task.id}1`).set('x-access-token', token).send(updatedData);
         // Assertions
         expect(updateResponse.status).toBe(400); // Check for a successful status code
         expect(updateResponse.body.message).toBe('Task not found');
@@ -159,6 +239,29 @@ describe('updateTaskById ', () => {
 
 describe('deleteTaskById ', () => {
 
+    let token : any;
+
+    const createUserSigninToken = async () => {
+
+        // Use supertest to simulate a request to the signup route
+        const userData = {
+            username: 'testuser',
+            email: 'testuser@example.com',
+            password: 'password123',
+          };
+
+          const userDataLogin = {
+            email: 'testuser@example.com',
+            password: 'password123',
+          };
+      
+            // Use supertest to simulate a request to the signup route
+        const responseSignup = await request(app).post("/api/users/signup").send(userData);
+             // Use supertest to simulate a request to the signup route
+        const response = await request(app).post("/api/users/login").send(userDataLogin);
+
+        token = response.body.token;
+    }  
     const task = {
         "title": "task1",
         "description": "description1",
@@ -171,9 +274,9 @@ describe('deleteTaskById ', () => {
     let response : any;
 
     const createTask = async () => {
-
+        await createUserSigninToken();
         // Use supertest to simulate a request to the signup route
-        response = await request(app).post("/api/task").send(task);
+        response = await request(app).post("/api/task").set('x-access-token', token).send(task);
     }
 
     it('Should Delete task by Id', async () => {
@@ -188,7 +291,7 @@ describe('deleteTaskById ', () => {
             "category":"Home2",
             "status":"Pending"
         };
-        const updateResponse = await request(app).delete(`/api/task/${response.body.task.id}`);
+        const updateResponse = await request(app).delete(`/api/task/${response.body.task.id}`).set('x-access-token', token);
         // Assertions
         expect(updateResponse.status).toBe(200); // Check for a successful status code
         expect(updateResponse.body.message).toBe('Task deleted successfully'); // Check for a successful status code
@@ -197,7 +300,7 @@ describe('deleteTaskById ', () => {
     it('Should get Error when no task found', async () => {
 
         await createTask();
-        const updateResponse = await request(app).delete(`/api/task/${response.body.task.id}1`);
+        const updateResponse = await request(app).delete(`/api/task/${response.body.task.id}1`).set('x-access-token', token);
         // Assertions
         expect(updateResponse.status).toBe(400); // Check for a successful status code
         expect(updateResponse.body.message).toBe('Task not found');
@@ -205,6 +308,30 @@ describe('deleteTaskById ', () => {
 });
 
 describe('getAllTask ', () => {
+
+    let token : any;
+
+    const createUserSigninToken = async () => {
+
+        // Use supertest to simulate a request to the signup route
+        const userData = {
+            username: 'testuser',
+            email: 'testuser@example.com',
+            password: 'password123',
+          };
+
+          const userDataLogin = {
+            email: 'testuser@example.com',
+            password: 'password123',
+          };
+      
+            // Use supertest to simulate a request to the signup route
+        const responseSignup = await request(app).post("/api/users/signup").send(userData);
+             // Use supertest to simulate a request to the signup route
+        const response = await request(app).post("/api/users/login").send(userDataLogin);
+
+        token = response.body.token;
+    }  
 
     const task = {
         "title": "task1",
@@ -218,15 +345,15 @@ describe('getAllTask ', () => {
     let response : any;
 
     const createTask = async () => {
-
+        await createUserSigninToken();
         // Use supertest to simulate a request to the signup route
-        response = await request(app).post("/api/task").send(task);
+        response = await request(app).post("/api/task").set('x-access-token', token).send(task);
     }
 
     it('Should get Tasks', async () => {
 
         await createTask();
-        const fetchResponse = await request(app).get(`/api/task`);
+        const fetchResponse = await request(app).get(`/api/task`).set('x-access-token', token);
         // Assertions
         expect(fetchResponse.status).toBe(200); // Check for a successful status code
     });
@@ -234,7 +361,7 @@ describe('getAllTask ', () => {
     it('Should get Tasks By category', async () => {
 
         await createTask();
-        const fetchResponse = await request(app).get(`/api/task/?category=Home1`);
+        const fetchResponse = await request(app).get(`/api/task/?category=Home1`).set('x-access-token', token);
         // Assertions
         expect(fetchResponse.status).toBe(200); // Check for a successful status code
     });
@@ -242,7 +369,7 @@ describe('getAllTask ', () => {
     it('Should get Tasks By assignedTo', async () => {
 
         await createTask();
-        const fetchResponse = await request(app).get(`/api/task/?assignedTo=${response.body.task.assignedTo}`);
+        const fetchResponse = await request(app).get(`/api/task/?assignedTo=${response.body.task.assignedTo}`).set('x-access-token', token);
         // Assertions
         expect(fetchResponse.status).toBe(200); // Check for a successful status code
     });
