@@ -25,11 +25,13 @@ describe('Tasks Creation', () => {
             const response = await request(app).post("/api/users/login").send(userDataLogin);
 
             token = response.body.token;
-        }
+        };
+
+        beforeEach(async () => {
+            await createUserSigninToken();
+        });
 
     it('Should create a new Task when valid data is provided', async () => {
-
-        await createUserSigninToken();
         const task = {
             "title": "task1",
             "description": "description1",
@@ -50,8 +52,6 @@ describe('Tasks Creation', () => {
     });
 
     it('Should return an error when any field is empty', async () => {
-
-        await createUserSigninToken();
         const task = {
             "title": "task1",
             "description": "",
@@ -71,8 +71,6 @@ describe('Tasks Creation', () => {
     });
 
     it(`Should return an error when status is not from 'Pending' Or 'Completed'`, async () => {
-
-        await createUserSigninToken();
         const task = {
             "title": "task1",
             "description": "description1",
@@ -134,11 +132,13 @@ describe('getTaskById ', () => {
         // Use supertest to simulate a request to the signup route
         await createUserSigninToken();
         response = await request(app).post("/api/task").set('x-access-token', token).send(task);
-    }
+    };
+
+    beforeEach(async () => {
+        await createTask();
+    });
 
     it('Should get Task By Id', async () => {
-
-        await createTask();
         const fetchResponse = await request(app).get(`/api/task/${response.body.task.id}`).set('x-access-token', token);
         // Assertions
         expect(fetchResponse.status).toBe(200); // Check for a successful status code
@@ -146,8 +146,6 @@ describe('getTaskById ', () => {
     });
 
     it('Should get Error when no task found', async () => {
-
-        await createTask();
         const fetchResponse = await request(app).get(`/api/task/${response.body.task.id}1`).set('x-access-token', token);
         // Assertions
         expect(fetchResponse.status).toBe(400); // Check for a successful status code
@@ -197,11 +195,13 @@ describe('updateTaskById ', () => {
         await createUserSigninToken();
         // Use supertest to simulate a request to the signup route
         response = await request(app).post("/api/task").set('x-access-token', token).send(task);
-    }
+    };
+
+    beforeEach(async () => {
+        await createTask();
+    });
 
     it('Should Update task by Id', async () => {
-
-        await createTask();
         const updatedData = {
             "title": "task2",
             "description": "description1",
@@ -219,8 +219,6 @@ describe('updateTaskById ', () => {
     });
 
     it('Should get Error when no task found', async () => {
-
-        await createTask();
         const updatedData = {
             "title": "task2",
             "description": "description1",
@@ -277,11 +275,13 @@ describe('deleteTaskById ', () => {
         await createUserSigninToken();
         // Use supertest to simulate a request to the signup route
         response = await request(app).post("/api/task").set('x-access-token', token).send(task);
-    }
+    };
+
+    beforeEach(async () => {
+        await createTask();
+    });
 
     it('Should Delete task by Id', async () => {
-
-        await createTask();
         const updatedData = {
             "title": "task2",
             "description": "description1",
@@ -298,8 +298,6 @@ describe('deleteTaskById ', () => {
     });
 
     it('Should get Error when no task found', async () => {
-
-        await createTask();
         const updateResponse = await request(app).delete(`/api/task/${response.body.task.id}1`).set('x-access-token', token);
         // Assertions
         expect(updateResponse.status).toBe(400); // Check for a successful status code
@@ -348,27 +346,25 @@ describe('getAllTask ', () => {
         await createUserSigninToken();
         // Use supertest to simulate a request to the signup route
         response = await request(app).post("/api/task").set('x-access-token', token).send(task);
-    }
+    };
+
+    beforeEach(async () => {
+        await createTask();
+    });
 
     it('Should get Tasks', async () => {
-
-        await createTask();
         const fetchResponse = await request(app).get(`/api/task`).set('x-access-token', token);
         // Assertions
         expect(fetchResponse.status).toBe(200); // Check for a successful status code
     });
 
     it('Should get Tasks By category', async () => {
-
-        await createTask();
         const fetchResponse = await request(app).get(`/api/task/?category=Home1`).set('x-access-token', token);
         // Assertions
         expect(fetchResponse.status).toBe(200); // Check for a successful status code
     });
 
     it('Should get Tasks By assignedTo', async () => {
-
-        await createTask();
         const fetchResponse = await request(app).get(`/api/task/?assignedTo=${response.body.task.assignedTo}`).set('x-access-token', token);
         // Assertions
         expect(fetchResponse.status).toBe(200); // Check for a successful status code

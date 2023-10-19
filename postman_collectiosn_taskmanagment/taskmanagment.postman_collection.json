@@ -1,0 +1,1522 @@
+{
+	"info": {
+		"_postman_id": "190dd060-d402-44bf-a7cc-ca41f991a338",
+		"name": "taskmanagment",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27781164"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Signup",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"username\":\"username\",\"email\":\"email@email.com\",\"password\":\"password123456\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/users/signup",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users",
+								"signup"
+							]
+						},
+						"description": "This is the Signup API for User.\n\nThere are three different payload examples attached with responses."
+					},
+					"response": [
+						{
+							"name": "Signup",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"username\":\"username\",\"email\":\"email@email.com\",\"password\":\"password123456\"}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/users/signup",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"users",
+										"signup"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "456"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1c8-o6dNAZ3fV40xoYLREbKqCCKtIAM\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 18 Oct 2023 17:57:28 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"User registered successfully\",\n    \"user\": {\n        \"username\": \"username\",\n        \"email\": \"email@email.com\",\n        \"password\": \"$2b$10$Aa0.AVNytG8laBzskO8eMuc.5.MavK3ADwVGnJJvOgOxFW56Pmjhm\",\n        \"id\": \"84b122f7-194b-4ab2-8de1-d0ab5117042e\",\n        \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiODRiMTIyZjctMTk0Yi00YWIyLThkZTEtZDBhYjUxMTcwNDJlIiwiZW1haWwiOiJlbWFpbEBlbWFpbC5jb20iLCJpYXQiOjE2OTc2NTE4NDgsImV4cCI6MTY5NzY1OTA0OH0.xe3RCWYu3UflA-L4B16ugoY0fs2kUOyTTP2P6AKKEWI\"\n    }\n}"
+						},
+						{
+							"name": "Email Exists",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"username\":\"username\",\"email\":\"email@email.com\",\"password\":\"password123456\"}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/users/signup",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"users",
+										"signup"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "34"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"22-7E/nw4NTj1wudq/7GNEsO0zIZHQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 18 Oct 2023 17:57:47 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Email already in use\"\n}"
+						},
+						{
+							"name": "Invalid Email",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"username\":\"username\",\"email\":\"emailemail.com\",\"password\":\"password123456\"}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/users/signup",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"users",
+										"signup"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "30"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1e-9qUUBZoukVTEVPPe6v+i+Vi3qKs\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 18 Oct 2023 17:58:10 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Email is inValid\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Signin",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);\r",
+									"pm.globals.set(\"token\", jsonData.token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"email\":\"email@email.com\",\"password\":\"password123456\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/users/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users",
+								"login"
+							]
+						},
+						"description": "This is the Signin API for User.\n\nThere are two different payload examples attached with responses.\n\nIn response of this request also set token as \"token\"\n\nglobal variable for use in Task APIs , as Authentication implemented so token is required for Task Apis."
+					},
+					"response": [
+						{
+							"name": "Signin",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"email\":\"email@email.com\",\"password\":\"password123456\"}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/users/login",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"users",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "357"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"165-Dvne4MpdvCvYgI7y/Hsu+XRqlf0\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 18 Oct 2023 18:00:49 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Authentication successful\",\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiODRiMTIyZjctMTk0Yi00YWIyLThkZTEtZDBhYjUxMTcwNDJlIiwiZW1haWwiOiJlbWFpbEBlbWFpbC5jb20iLCJpYXQiOjE2OTc2NTIwNDksImV4cCI6MTY5NzY1OTI0OX0.K5Os7J7qLC5xKW5yPMgt4RNLD035SX7tZtxH2dO5kSk\",\n    \"user\": {\n        \"id\": \"84b122f7-194b-4ab2-8de1-d0ab5117042e\",\n        \"email\": \"email@email.com\"\n    }\n}"
+						},
+						{
+							"name": "Incorrect Email",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"email\":\"email@email1.com\",\"password\":\"password123456\"}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/users/login",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"users",
+										"login"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "30"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1e-665NDCZU3XMNk4URmyX8XZGnjk0\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 18 Oct 2023 18:03:06 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Email not exists\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "task",
+			"item": [
+				{
+					"name": "Create Task",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);\r",
+									"pm.globals.set(\"taskId\", jsonData.task.id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"title\": \"task1\",\"description\": \"description1\",\"createdAt\": \"17-10-2023\",\"dueAt\" : \"18-10-2023\",\"assignedTo\": \"a8b9f07f-84c1-490b-970b-122881537466\",\"category\":\"Home1\",\"status\":\"Pending\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/task",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"task"
+							]
+						},
+						"description": "This is the Task creation API.\n\nThere are four different payload examples attached with responses.\n\nIn response of this request also set id of task as \"taskId\"\n\nglobal variable for use in fetch,update and delete Task Apis."
+					},
+					"response": [
+						{
+							"name": "Create Task",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-access-token",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"title\": \"task1\",\"description\": \"description1\",\"createdAt\": \"17-10-2023\",\"dueAt\" : \"18-10-2023\",\"assignedTo\": \"a8b9f07f-84c1-490b-970b-122881537466\",\"category\":\"Home1\",\"status\":\"Pending\"}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/task",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"task"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "273"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"111-XquoQqEoX0Y9+ZRYoDMQ6D1l8kc\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 18 Oct 2023 18:17:08 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Task created successfully\",\n    \"task\": {\n        \"id\": \"169e8173-8d9f-4739-9205-50f9cd3cf3ad\",\n        \"title\": \"task1\",\n        \"description\": \"description1\",\n        \"createdAt\": \"17-10-2023\",\n        \"dueAt\": \"18-10-2023\",\n        \"assignedTo\": \"a8b9f07f-84c1-490b-970b-122881537466\",\n        \"category\": \"Home1\",\n        \"status\": \"Pending\"\n    }\n}"
+						},
+						{
+							"name": "Invalid Token",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-access-token",
+										"value": "{{token}}1",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"title\": \"task1\",\"description\": \"description1\",\"createdAt\": \"17-10-2023\",\"dueAt\" : \"18-10-2023\",\"assignedTo\": \"a8b9f07f-84c1-490b-970b-122881537466\",\"category\":\"Home1\",\"status\":\"Pending\"}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/task",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"task"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "html",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/html; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "13"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"d-GLqvnw/1O/MWaNK/4OhPBcb7NQs\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 18 Oct 2023 18:17:32 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "Invalid Token"
+						},
+						{
+							"name": "Validation Empty Field",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-access-token",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"title\": \"task1\",\"description\": \"\",\"createdAt\": \"17-10-2023\",\"dueAt\" : \"18-10-2023\",\"assignedTo\": \"a8b9f07f-84c1-490b-970b-122881537466\",\"category\":\"Home1\",\"status\":\"Pending\"}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/task",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"task"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "41"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"29-R9mqECgkbD7aQQGBddz3RYyOH18\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 18 Oct 2023 18:18:33 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"All field necessary to fill\"\n}"
+						},
+						{
+							"name": "Status Enum Check",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-access-token",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"title\": \"task1\",\"description\": \"description1\",\"createdAt\": \"17-10-2023\",\"dueAt\" : \"18-10-2023\",\"assignedTo\": \"a8b9f07f-84c1-490b-970b-122881537466\",\"category\":\"Home1\",\"status\":\"Pending1\"}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/task",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"task"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "55"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"37-maWuE/vLYjUDbkwbtfpeXlZMFzM\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 18 Oct 2023 18:19:42 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Status Should be 'Pending' Or 'Completed'\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Task By ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/api/task/{{taskId}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"task",
+								"{{taskId}}"
+							]
+						},
+						"description": "This is the Task Fetch API.\n\nThere are two different payload examples attached with responses."
+					},
+					"response": [
+						{
+							"name": "Get Task By ID",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-access-token",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3000/api/task/{{taskId}}",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"task",
+										"{{taskId}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "235"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"eb-xhJRNaA3yPCyQnY0ynXt8VIgJac\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 18 Oct 2023 18:22:04 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"task\": {\n        \"id\": \"febd1c87-9ea8-4d34-93dd-daa2e8fcce55\",\n        \"title\": \"task1\",\n        \"description\": \"description1\",\n        \"createdAt\": \"17-10-2023\",\n        \"dueAt\": \"18-10-2023\",\n        \"assignedTo\": \"a8b9f07f-84c1-490b-970b-122881537466\",\n        \"category\": \"Home1\",\n        \"status\": \"Pending\"\n    }\n}"
+						},
+						{
+							"name": "Invalid Task Id",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-access-token",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3000/api/task/{{taskId}}1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"task",
+										"{{taskId}}1"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "28"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1c-MHDSHEeakQ3QeijgQMEHeol2HWg\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 18 Oct 2023 18:22:57 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Task not found\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Update Task By Id",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"title\": \"task11\",\"description\": \"ddd\",\"createdAt\": \"17-10-2023\",\"dueAt\" : \"18-10-2023\",\"assignedTo\": \"a8b9f07f-84c1-490b-970b-122881537466\",\"category\":\"Home1\",\"status\":\"Pending\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/task/{{taskId}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"task",
+								"{{taskId}}"
+							]
+						},
+						"description": "This is the Task Update API.\n\nThere are two different payload examples attached with responses."
+					},
+					"response": [
+						{
+							"name": "Update Task By Id",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "x-access-token",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"title\": \"task11\",\"description\": \"ddd\",\"createdAt\": \"17-10-2023\",\"dueAt\" : \"18-10-2023\",\"assignedTo\": \"a8b9f07f-84c1-490b-970b-122881537466\",\"category\":\"Home1\",\"status\":\"Pending\"}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/task/{{taskId}}",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"task",
+										"{{taskId}}"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "265"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"109-QfZtf85qLKbIDnyHaoRE8h51JIg\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 18 Oct 2023 18:24:02 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Task updated successfully\",\n    \"task\": {\n        \"id\": \"febd1c87-9ea8-4d34-93dd-daa2e8fcce55\",\n        \"title\": \"task11\",\n        \"description\": \"ddd\",\n        \"createdAt\": \"17-10-2023\",\n        \"dueAt\": \"18-10-2023\",\n        \"assignedTo\": \"a8b9f07f-84c1-490b-970b-122881537466\",\n        \"category\": \"Home1\",\n        \"status\": \"Pending\"\n    }\n}"
+						},
+						{
+							"name": "Invalid Task Id",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "x-access-token",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"title\": \"task11\",\"description\": \"ddd\",\"createdAt\": \"17-10-2023\",\"dueAt\" : \"18-10-2023\",\"assignedTo\": \"a8b9f07f-84c1-490b-970b-122881537466\",\"category\":\"Home1\",\"status\":\"Pending\"}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/task/{{taskId}}1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"task",
+										"{{taskId}}1"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "28"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1c-MHDSHEeakQ3QeijgQMEHeol2HWg\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 18 Oct 2023 18:24:21 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Task not found\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete Task By Id",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/api/task/{{taskId}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"task",
+								"{{taskId}}"
+							]
+						},
+						"description": "This is the Task Delete API.\n\nThere are two different payload examples attached with responses."
+					},
+					"response": [
+						{
+							"name": "Invalid Task Id",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "x-access-token",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3000/api/task/{{taskId}}1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"task",
+										"{{taskId}}1"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "28"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1c-MHDSHEeakQ3QeijgQMEHeol2HWg\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 18 Oct 2023 18:26:05 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Task not found\"\n}"
+						},
+						{
+							"name": "Delete Task By Id",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "x-access-token",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3000/api/task/{{taskId}}",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"task",
+										"{{taskId}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "39"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"27-urf4l4W7aUjEqcMghGgrIBDtf0M\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 18 Oct 2023 18:26:34 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Task deleted successfully\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Tasks",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/api/task",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"task"
+							]
+						},
+						"description": "This is the Fetch All Task API.\n\nThere is payload examples attached with response."
+					},
+					"response": [
+						{
+							"name": "Get Tasks",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-access-token",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3000/api/task",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"task"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "455"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1c7-CABXK9HNQ4cyTfDCemwlQsxlyEo\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 18 Oct 2023 18:29:21 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": \"169e8173-8d9f-4739-9205-50f9cd3cf3ad\",\n        \"title\": \"task1\",\n        \"description\": \"description1\",\n        \"createdAt\": \"17-10-2023\",\n        \"dueAt\": \"18-10-2023\",\n        \"assignedTo\": \"a8b9f07f-84c1-490b-970b-122881537466\",\n        \"category\": \"Home1\",\n        \"status\": \"Pending\"\n    },\n    {\n        \"id\": \"e1bdc9b7-9ccc-4418-a9dc-dd97242826e3\",\n        \"title\": \"task1\",\n        \"description\": \"description1\",\n        \"createdAt\": \"17-10-2023\",\n        \"dueAt\": \"18-10-2023\",\n        \"assignedTo\": \"a8b9f07f-84c1-490b-970b-122881537466\",\n        \"category\": \"Home1\",\n        \"status\": \"Pending\"\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Get Tasks By Category Param",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/api/task/?category=Home1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"task",
+								""
+							],
+							"query": [
+								{
+									"key": "category",
+									"value": "Home1"
+								}
+							]
+						},
+						"description": "This is the Fetch All Task API By By filtering provided category.\n\nThere is payload examples attached with response."
+					},
+					"response": [
+						{
+							"name": "Get Tasks By Category Param",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-access-token",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3000/api/task/?category=Home1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"task",
+										""
+									],
+									"query": [
+										{
+											"key": "category",
+											"value": "Home1"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "455"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1c7-CABXK9HNQ4cyTfDCemwlQsxlyEo\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 18 Oct 2023 18:30:49 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": \"169e8173-8d9f-4739-9205-50f9cd3cf3ad\",\n        \"title\": \"task1\",\n        \"description\": \"description1\",\n        \"createdAt\": \"17-10-2023\",\n        \"dueAt\": \"18-10-2023\",\n        \"assignedTo\": \"a8b9f07f-84c1-490b-970b-122881537466\",\n        \"category\": \"Home1\",\n        \"status\": \"Pending\"\n    },\n    {\n        \"id\": \"e1bdc9b7-9ccc-4418-a9dc-dd97242826e3\",\n        \"title\": \"task1\",\n        \"description\": \"description1\",\n        \"createdAt\": \"17-10-2023\",\n        \"dueAt\": \"18-10-2023\",\n        \"assignedTo\": \"a8b9f07f-84c1-490b-970b-122881537466\",\n        \"category\": \"Home1\",\n        \"status\": \"Pending\"\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Get tasks by assignedTo",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/api/task/?assignedTo=a8b9f07f-84c1-490b-970b-122881537466",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"task",
+								""
+							],
+							"query": [
+								{
+									"key": "assignedTo",
+									"value": "a8b9f07f-84c1-490b-970b-122881537466"
+								}
+							]
+						},
+						"description": "This is the Fetch All Task API By filtering provided assignedTo.\n\nThere is payload examples attached with response."
+					},
+					"response": [
+						{
+							"name": "Get tasks by assignedTo",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-access-token",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3000/api/task/?assignedTo=a8b9f07f-84c1-490b-970b-122881537466",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"task",
+										""
+									],
+									"query": [
+										{
+											"key": "assignedTo",
+											"value": "a8b9f07f-84c1-490b-970b-122881537466"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "455"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1c7-CABXK9HNQ4cyTfDCemwlQsxlyEo\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 18 Oct 2023 18:32:10 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": \"169e8173-8d9f-4739-9205-50f9cd3cf3ad\",\n        \"title\": \"task1\",\n        \"description\": \"description1\",\n        \"createdAt\": \"17-10-2023\",\n        \"dueAt\": \"18-10-2023\",\n        \"assignedTo\": \"a8b9f07f-84c1-490b-970b-122881537466\",\n        \"category\": \"Home1\",\n        \"status\": \"Pending\"\n    },\n    {\n        \"id\": \"e1bdc9b7-9ccc-4418-a9dc-dd97242826e3\",\n        \"title\": \"task1\",\n        \"description\": \"description1\",\n        \"createdAt\": \"17-10-2023\",\n        \"dueAt\": \"18-10-2023\",\n        \"assignedTo\": \"a8b9f07f-84c1-490b-970b-122881537466\",\n        \"category\": \"Home1\",\n        \"status\": \"Pending\"\n    }\n]"
+						}
+					]
+				}
+			]
+		}
+	]
+}

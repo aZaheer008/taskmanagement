@@ -5,6 +5,8 @@
   "main": "app.js",
   "scripts": {
     "dev": "nodemon src/app.ts",
+    "start": "ts-node dist/app.js",
+    "build": "tsc -p .",
     "test": "jest --coverage"
   },
   "repository": {
