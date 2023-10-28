@@ -6,16 +6,14 @@
   "scripts": {
     "dev": "nodemon src/app.ts",
     "start": "ts-node dist/app.js",
-    "build": "rimraf dist && tsc",
+    "build": "tsc",
     "ts.check": "tsc --project tsconfig.json",
     "add-build": "git add dist",
-    "test": "jest --coverage"
+    "test": "jest --coverage",
+    "postinstall": "tsc",
+    "watch-node": "nodemon dist/app.js",
+    "deploy": "git add . && git commit -m Heroku && git push heroku master"
   },
-  "pre-commit": [
-    "ts.check",
-    "build",
-    "add-build"
-],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/aZaheer008/taskmanagement.git"
